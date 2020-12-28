@@ -222,4 +222,6 @@ run: docker-run-app
 .PHONY: clean
 clean: shell-clean-cache docker-clean
 
+pre-commit-install: docker-pre-commit-build docker-pre-commit-install docker-pre-commit-autoupdate
+
 pre-commit: docker-precommit-run

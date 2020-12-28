@@ -11,6 +11,12 @@ Note: The project was created with this specific version but older versions migh
 
 ## Git hooks
 
+You need to run the commands to install the pre-commit:
+
+```sh
+make pre-commit install
+```
+
 It is recommended to install the git hooks present in `/githooks` folder:
 
 git 2.9 or higher:
@@ -25,7 +31,7 @@ git 2.8 or lower:
 find .git/hooks -type l -exec rm {} \; && find githooks -type f -exec ln -sf ../../{} .git/hooks/ \;
 ```
 
-The pre commit hook will run the linter, if there are linting errors the commit will be cancelled.
+**NOTE: If you change the `.pre-commit-config.yaml` you need remove the githook path configuration**
 
 ## Getting started
 
