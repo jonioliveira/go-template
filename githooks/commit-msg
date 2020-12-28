@@ -1,5 +1,0 @@
-#!/bin/bash
-
-MSG="$1"
-
-make commit-msg $MSG

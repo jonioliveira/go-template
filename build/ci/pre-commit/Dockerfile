@@ -35,7 +35,6 @@ RUN GO111MODULE=on go get -v -u github.com/go-critic/go-critic/cmd/gocritic
 
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.33.0
 
-
 RUN pip3 install pre-commit==2.9.3
 
 WORKDIR /pre-commit
