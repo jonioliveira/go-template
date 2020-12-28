@@ -10,11 +10,8 @@ export VERSION?=dev-latest
 
 DOCKER_LOCAL_IMAGE=$(REPOSITORY):dev-local
 DOCKER_PRECOMMIT_LOCAL_IMAGE=$(REPOSITORY)-precommit:dev-local
-DOCKER_COMMITMSG_LOCAL_IMAGE=$(REPOSITORY)-commitmsg:dev-local
 DOCKER_PRECOMMIT_BUILD=docker build -f build/ci/pre-commit/Dockerfile --tag $(DOCKER_PRECOMMIT_LOCAL_IMAGE) .
-DOCKER_COMMITMSG_BUILD=docker build -f build/ci/commit-msg/Dockerfile --tag $(DOCKER_COMMITMSG_LOCAL_IMAGE) .
 DOCKER_PRECOMMIT_RUN=docker run -t -v $$PROJECT_ROOT:/pre-commit $(DOCKER_PRECOMMIT_LOCAL_IMAGE)
-DOCKER_COMMITMSG_RUN=docker run -t -v $$PROJECT_ROOT:/commit-msg $(DOCKER_COMMITMSG_LOCAL_IMAGE)
 DOCKER_DEV_BUILD=docker build -f build/package/Dockerfile --target development --tag $(DOCKER_LOCAL_IMAGE) --build-arg VERSION .
 DOCKER_RUN_BASE=docker run --rm -v $$PROJECT_ROOT:/opt/app/ -v /opt/app/bin -v $$PROJECT_ROOT/.cache/:/.cache/ -p $(PORT):8080 -e GOCACHE=/.cache/go-build -e GOLANGCI_LINT_CACHE=/.cache/golangci-lint
 DOCKER_DEV_RUN=$(DOCKER_RUN_BASE) $(DOCKER_LOCAL_IMAGE)
@@ -140,16 +137,6 @@ docker-precommit-clean:
 docker-precommit-run:
 	$(DOCKER_PRECOMMIT_RUN) run --all-files
 
-# target: docker-commitmsg-build - Build the commitlint image inside the container
-.PHONY: docker-commitmsg-build
-docker-commitmsg-build:
-	$(DOCKER_COMMITMSG_BUILD)
-
-# target: docker-commitmsg-run - run the commitlint image inside the container
-.PHONY: docker-commitmsg-run
-docker-commitmsg-run:
-	$(DOCKER_COMMITMSG_RUN)
-
 # Run the linter inside the container.
 .PHONY: docker-lint-app
 docker-lint-app:
@@ -235,6 +222,4 @@ run: docker-run-app
 .PHONY: clean
 clean: shell-clean-cache docker-clean
 
-pre-commit: docker-precommit-build docker-precommit-install docker-precommit-autoupdate docker-precommit-run
-
-commit-msg: docker-commitmsg-run
+pre-commit: docker-precommit-run
