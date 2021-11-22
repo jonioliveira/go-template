@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 # Environment variables used by commands called from make (cannot be make variables).
-export PROJECT_NAME?=base-go
+export PROJECT_NAME?=go-template
 export LC_ALL=en_US.UTF-8
 export PROJECT_ROOT=$(shell pwd)
 export PATH=$(shell (echo "$$(go env GOPATH 2> /dev/null)/bin:" || echo ""))$(shell echo $$PATH)

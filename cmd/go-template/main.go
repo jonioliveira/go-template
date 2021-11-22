@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jonioliveira/base-go/pkg/app"
+	"github.com/jonioliveira/go-template/pkg/app"
 )
 
 func main() {

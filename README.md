@@ -1,6 +1,7 @@
 # base-go
 
 Base template for go projects
+
 ## Development Requirements
 
 You will need to have installed the following:
@@ -17,18 +18,18 @@ You need to run the commands to install the pre-commit:
 make pre-commit install
 ```
 
-It is recommended to install the git hooks present in `/githooks` folder:
+It is recommended to install the git hooks present in `/.githooks` folder:
 
 git 2.9 or higher:
 
 ```sh
-git config core.hooksPath githooks
+git config core.hooksPath .githooks
 ```
 
 git 2.8 or lower:
 
 ```sh
-find .git/hooks -type l -exec rm {} \; && find githooks -type f -exec ln -sf ../../{} .git/hooks/ \;
+find .git/hooks -type l -exec rm {} \; && find .githooks -type f -exec ln -sf ../../{} .git/hooks/ \;
 ```
 
 **NOTE: If you change the `.pre-commit-config.yaml` you need remove the githook path configuration**
@@ -41,10 +42,10 @@ find .git/hooks -type l -exec rm {} \; && find githooks -type f -exec ln -sf ../
 
 Additionally there should be an effort to follow these code style guidelines and recommendations:
 
-- https://talks.golang.org/2014/names.slide
-- https://golang.org/doc/effective_go.html#names
-- https://blog.golang.org/package-names
-- https://github.com/golang/go/wiki/CodeReviewComments
+- [Golang talk](https://talks.golang.org/2014/names.slide)
+- [Effective Go](https://golang.org/doc/effective_go.html#names)
+- [Golang Blog](https://blog.golang.org/package-names)
+- [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments)
 - [Style guideline for Go packages](https://rakyll.org/style-packages) (rakyll/JBD)
 
 ## Folder structure

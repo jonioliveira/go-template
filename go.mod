@@ -1,3 +1,3 @@
-module github.com/jonioliveira/base-go
+module github.com/jonioliveira/go-template
 
-go 1.15
+go 1.17
